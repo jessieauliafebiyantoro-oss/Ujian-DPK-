@@ -1,0 +1,64 @@
+<!DOCTYPE>
+<html>
+<head>
+     <meta charset ="UTF-8">
+     <title>Ujian1</title> 
+</head>
+<body>
+  <script>
+//study case//  
+   let n = parseInt(prompt("Masukkan jumlah pembeli:"));
+   let hargaPerBuku = 5000;
+   let daftarTotalBayar = [];
+   let totalPendapatan = 0;
+   let pembeliDiskonKecil = 0;
+   let pembeliDiskonBesar = 0;
+
+ for (let i = 1; i <= n; i++) {
+ let jumlahBuku = parseInt(prompt(`Pembeli ke-${i}: Masukkan Jumlah Buku Yang Dibeli:`));
+ let totalHarga = 0;
+ if (jumlahBuku <= 100) {
+totalHarga = jumlahBuku * hargaPerBuku;
+
+} else if (jumlahBuku <= 200) {
+let bukuPertama = 100 * hargaPerBuku * 0.95;
+let sisaBuku = (jumlahBuku - 100) * hargaPerBuku * 0.85;
+totalHarga = bukuPertama + sisaBuku;
+pembeliDiskonKecil++;
+
+} else {
+ let bukuPertama = 100 * hargaPerBuku * 0.93;
+ let bukuKedua = 100 * hargaPerBuku * 0.83;
+ let sisaBuku = (jumlahBuku - 200) * hargaPerBuku * 0.73;
+totalHarga = bukuPertama + bukuKedua + sisaBuku;
+pembeliDiskonBesar++;
+}
+
+totalPendapatan += totalHarga;
+daftarTotalBayar.push({
+pembeliKe: i,
+jumlah: jumlahBuku,
+bayar: totalHarga
+});
+
+
+}
+let rataRata = n > 0 ? totalPendapatan / n : 0;
+console.log("=== Transaksi ===");
+daftarTotalBayar.forEach(item => {
+console.log(`Pembeli ke-${item.pembeliKe} | Jumlah: ${item.jumlah} | Bayar: Rp${item.bayar.toLocaleString('id-ID')}`);
+});
+console.table(totalPendapatan);
+
+
+
+   console.log("=== Rekapan ===");
+   console.log(`Total Pendapatan  : Rp${totalPendapatan.toLocaleString('id-ID')}`);
+   console.log(`Rata-rata Pendapatan   : Rp${rataRata.toLocaleString('id-ID')}`);
+   console.log(`Jumlah Pembeli Diskon Kecil: ${pembeliDiskonKecil}`);
+   console.log(`Jumlah Pembeli Diskon Besar: ${pembeliDiskonBesar}`);
+
+
+  </script>
+  </body> 
+</html>
